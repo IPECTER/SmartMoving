@@ -6,7 +6,7 @@ plugins {
 group = 'com.github.ipecter'
 version = '1.0.0'
 
-ConfigurableFileTree libsImplementation = fileTree(dir: 'libs-implementation', include: ['*.jar'])
+ConfigurableFileTree libs = fileTree(dir: 'libs', include: ['*.jar'])
 
 repositories {
     mavenCentral()
@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    implementation libsImplementation
+    implementation libs
     compileOnly "com.sk89q.worldguard:worldguard-bukkit:7.0.5-SNAPSHOT"
     compileOnly "me.clip:placeholderapi:2.11.1"
     compileOnly "io.papermc.paper:paper-api:1.19.1-R0.1-SNAPSHOT"

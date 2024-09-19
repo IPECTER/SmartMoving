@@ -16,9 +16,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class SmartMoving extends JavaPlugin {
-
     private String prefix = IridiumColorAPI.process("<GRADIENT:9ba832>[ SmartMoving ]</GRADIENT:a3a3a3> ");
-    private VersionManager versionManager = RTUPluginLib.getVersionManager();
 
     public static final void debug(String debugMessage) {
         if (ConfigManager.getInstance().isDebug()) {
@@ -40,7 +38,7 @@ public class SmartMoving extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        if (!versionManager.isSupportVersion("v1_14_R1", "v1_19_R1")) {
+        if (!MinecraftVersion.isSupport("v1_14_R1")) {
             Bukkit.getLogger().info(RTUPluginLib.getTextManager().formatted(prefix + "&cThis plugin works only on 1.14 or higher versions."));
             Bukkit.getLogger().info(RTUPluginLib.getTextManager().formatted(prefix + "&c이 플러그인은 1.14 이상에서만 작동합니다"));
             Bukkit.getPluginManager().disablePlugin(this);
@@ -100,7 +98,7 @@ public class SmartMoving extends JavaPlugin {
 
     private void loadNMS() {
         //Checking which NmsPacketManager should be used.
-        if (versionManager.isLegacy()) {
+        if (!MinecraftVersion.isSupport("v1_17_R1")) {
             SmartMovingManager.getInstance().nmsPacketManager = new LegacyIndependentNmsPackets(Bukkit.getWorlds().get(0));
         } else {
             SmartMovingManager.getInstance().nmsPacketManager = new VersionIndependentNmsPackets(Bukkit.getWorlds().get(0));

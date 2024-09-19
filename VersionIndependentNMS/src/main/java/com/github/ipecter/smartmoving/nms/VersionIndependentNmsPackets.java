@@ -1,6 +1,7 @@
 package com.github.ipecter.smartmoving.nms;
 
 import com.github.ipecter.nms.NmsPackets;
+import com.github.ipecter.rtu.pluginlib.RTUPluginLib;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityDestroy;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityMetadata;
@@ -134,7 +135,11 @@ public class VersionIndependentNmsPackets implements NmsPackets {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        if (RTUPluginLib.getVersionManager().isSupportVersion("v1_20_R1", "v1_20_R4")) {
 
+        } else {
+
+        }
         PacketPlayOutSpawnEntity spawnBlockPacket = new PacketPlayOutSpawnEntity(
                 this.blockId,
                 UUID.randomUUID(), // entity uuid
