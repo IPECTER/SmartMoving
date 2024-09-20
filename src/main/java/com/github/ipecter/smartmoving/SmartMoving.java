@@ -38,7 +38,7 @@ public class SmartMoving extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        if (!MinecraftVersion.isSupport("v1_14_R1")) {
+        if (!MinecraftVersion.isSupport("1.14")) {
             Bukkit.getLogger().info(RTUPluginLib.getTextManager().formatted(prefix + "&cThis plugin works only on 1.14 or higher versions."));
             Bukkit.getLogger().info(RTUPluginLib.getTextManager().formatted(prefix + "&c이 플러그인은 1.14 이상에서만 작동합니다"));
             Bukkit.getPluginManager().disablePlugin(this);
@@ -98,7 +98,7 @@ public class SmartMoving extends JavaPlugin {
 
     private void loadNMS() {
         //Checking which NmsPacketManager should be used.
-        if (!MinecraftVersion.isSupport("v1_17_R1")) {
+        if (!MinecraftVersion.isSupport("1.17.1")) {
             SmartMovingManager.getInstance().nmsPacketManager = new LegacyIndependentNmsPackets(Bukkit.getWorlds().get(0));
         } else {
             SmartMovingManager.getInstance().nmsPacketManager = new VersionIndependentNmsPackets(Bukkit.getWorlds().get(0));
