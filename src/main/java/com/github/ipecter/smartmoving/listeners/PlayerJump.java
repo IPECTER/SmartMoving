@@ -13,8 +13,8 @@ public class PlayerJump implements Listener {
 
     @EventHandler
     public void onJump(PlayerJumpEvent e) {
-        Player player = e.getPlayer();
-        SMPlayer smPlayer = smartMovingManager.getPlayer(player);
+        SMPlayer smPlayer = smartMovingManager.getPlayer(e.getPlayer());
+        if (smPlayer == null) return;
         if (smPlayer.isCrawling()) {
             smPlayer.stopCrawling();
         }

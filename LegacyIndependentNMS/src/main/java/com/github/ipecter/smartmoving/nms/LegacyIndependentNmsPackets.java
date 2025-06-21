@@ -123,6 +123,10 @@ public class LegacyIndependentNmsPackets implements NmsPackets {
 
     private static Object findFallingBlockEntityTypes() {
         try {
+            //boolean mojMap =
+            for (Field field : class_EntityTypes.getFields()) {
+                System.out.println(field.getName());
+            }
             return getField(class_EntityTypes, "FALLING_BLOCK").get(null);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);

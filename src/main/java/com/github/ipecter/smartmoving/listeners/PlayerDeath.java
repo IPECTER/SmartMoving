@@ -13,6 +13,7 @@ public class PlayerDeath implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent e) {
         SMPlayer smPlayer = smartMovingManager.getPlayer(e.getPlayer());
+        if (smPlayer == null) return;
         if (smPlayer.isCrawling()) {
             smPlayer.stopCrawling();
         }

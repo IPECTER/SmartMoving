@@ -15,7 +15,8 @@ public class PlayerDamage implements Listener {
     public void onPlayerDamage(EntityDamageEvent e) {
         if (e.getCause().equals(EntityDamageEvent.DamageCause.FALL) && e.getEntity() instanceof Player player) {
             SMPlayer smPlayer = smartMovingManager.getPlayer(player);
-            if (smPlayer != null && smPlayer.isSliding()) {
+            if (smPlayer == null) return;
+            if (smPlayer.isSliding()) {
                 e.setCancelled(true);
                 smPlayer.stopWallJump(false);
             }

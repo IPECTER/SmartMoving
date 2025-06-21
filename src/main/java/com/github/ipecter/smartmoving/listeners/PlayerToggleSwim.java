@@ -16,6 +16,7 @@ public class PlayerToggleSwim implements Listener {
     public void onEntityToggleSwim(EntityToggleSwimEvent e) {
         if (!e.isSwimming() && e.getEntity() instanceof Player player) {
             SMPlayer smPlayer = smartMovingManager.getPlayer(player);
+            if (smPlayer == null) return;
             if (smPlayer.isCrawling()) {
                 e.setCancelled(true);
             }

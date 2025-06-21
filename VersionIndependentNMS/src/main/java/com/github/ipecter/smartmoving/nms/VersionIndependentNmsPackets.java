@@ -112,7 +112,9 @@ public class VersionIndependentNmsPackets implements NmsPackets {
 
     private static EntityTypes<?> findEntityTypesFallingBlock() {
         for (Field f : EntityTypes.class.getFields()) {
-            if (f.getGenericType().getTypeName().equals("net.minecraft.world.entity.EntityTypes<net.minecraft.world.entity.item.EntityFallingBlock>")) {
+            boolean isModern = MinecraftVersion.isSupport("1.20.5");
+            String name = isModern ? "net.minecraft.world.entity.EntityType<net.minecraft.world.entity.item.FallingBlockEntity>" : "net.minecraft.world.entity.EntityTypes<net.minecraft.world.entity.item.EntityFallingBlock>";
+            if (f.getGenericType().getTypeName().equals(name)) {
                 try {
                     return (EntityTypes<?>) f.get(null);
                 } catch (Exception ignored) {
@@ -134,11 +136,6 @@ public class VersionIndependentNmsPackets implements NmsPackets {
             floorBlockMaterialId = (int) method_Block_getCombinedId.invoke(null, method_CraftBlock_getNMS.invoke(class_CraftBlock.cast(floorBlock)));
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-        if (RTUPluginLib.getVersionManager().isSupportVersion("v1_20_R1", "v1_20_R4")) {
-
-        } else {
-
         }
         PacketPlayOutSpawnEntity spawnBlockPacket = new PacketPlayOutSpawnEntity(
                 this.blockId,

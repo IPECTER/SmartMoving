@@ -32,6 +32,7 @@ public class PlayerToggleSneak implements Listener {
     public void onToggleSneak(PlayerToggleSneakEvent e) {
         Player player = e.getPlayer();
         SMPlayer smPlayer = smartMovingManager.getPlayer(player);
+        if (smPlayer == null) return;
         if (!player.isFlying()) {
             if (smPlayer.isWallJumping() && !e.isSneaking()) {
                 smPlayer.stopWallJump();

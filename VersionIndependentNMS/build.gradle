@@ -5,13 +5,19 @@ plugins {
 
 group = 'com.github.ipecter'
 
-sourceCompatibility = 11
-targetCompatibility = 11
+sourceCompatibility = 17
+targetCompatibility = 17
 
 repositories {
+    mavenCentral()
+    mavenLocal()
     maven {
         name = 'codemc-repo'
         url = 'https://repo.codemc.org/repository/nms/'
+    }
+    maven {
+        name = 'minecraft-repo'
+        url = 'https://libraries.minecraft.net/'
     }
 }
 
